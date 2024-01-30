@@ -15,9 +15,13 @@ public class UserReportService {
 
 	@Autowired
 	private TransactionRepository transactionRepository;
+	
 
 	@Autowired
 	private UserExportToPdfService userExportToPdfService;
+	
+	@Autowired
+	private UserExportToExcelService userExportToExcelService;
 
 	public void exportToPdf(HttpServletResponse response, Long transcationId) throws IOException {
 		// get all user
@@ -26,5 +30,14 @@ public class UserReportService {
 		// export to pdf
 		userExportToPdfService.exportToPDF(response, Arrays.asList(data));
 	}
+	
+	  public void exportToExcel(HttpServletResponse response, Long transcationId) throws IOException {
+	        // get all user
+		  Transaction data = transactionRepository.findById(transcationId).orElse(null);
+
+	        // export to pdf
+		  userExportToExcelService.exportToExcel(response, Arrays.asList(data));
+
+	    }
 
 }

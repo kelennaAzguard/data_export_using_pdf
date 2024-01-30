@@ -52,5 +52,10 @@ public class BankingController {
 	public void exportToPdf(HttpServletResponse response , @PathVariable("transcationId") Long transcationId) throws IOException {
 		this.userReportService.exportToPdf(response,transcationId);
 	}
+	
+	@GetMapping("/excel/{transcationId}")
+	public void exportToExcel(HttpServletResponse response , @PathVariable("transcationId") Long transcationId) throws IOException {
+		this.userReportService.exportToExcel(response,transcationId);
+	}
 
 }
